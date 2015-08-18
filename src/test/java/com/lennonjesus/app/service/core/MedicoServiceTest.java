@@ -1,4 +1,4 @@
-package com.lennonjesus.app.service;
+package com.lennonjesus.app.service.core;
 
 /**
  *
