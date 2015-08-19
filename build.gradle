@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.lennonjesus'
+version = '0.0.1'
+
+description = """my-spring-boot-test-project"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+repositories {
+
+    maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.2.5.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '1.2.5.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.2.5.RELEASE'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.3.1'
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.3.1'
+    runtime group: 'org.hsqldb', name: 'hsqldb', version: '2.3.3'
+    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.2.5.RELEASE') {
+        exclude(module: 'commons-logging')
+    }
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'com.jayway.jsonpath', name: 'json-path', version: '0.8.1'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.0'
+}
