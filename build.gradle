@@ -1,16 +1,16 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
+
 group = 'com.lennonjesus'
 version = '0.0.1'
 
 description = """my-spring-boot-test-project"""
 
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 repositories {
-
     maven { url "http://repo.maven.apache.org/maven2" }
 }
 dependencies {
@@ -27,4 +27,17 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'com.jayway.jsonpath', name: 'json-path', version: '0.8.1'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.0'
+
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE"
+    classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+}
+
+
+apply plugin: 'idea'
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
 }
