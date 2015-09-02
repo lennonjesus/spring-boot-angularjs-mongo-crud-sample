@@ -6,7 +6,7 @@ apply plugin: 'groovy'
 group = 'com.lennonjesus'
 version = '0.0.1'
 
-description = """my-spring-boot-test-project"""
+description = """spring-boot-angularjs-mongo-crud-sample"""
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
