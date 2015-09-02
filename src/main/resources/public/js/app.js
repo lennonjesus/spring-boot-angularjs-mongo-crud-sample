@@ -1,3 +1,7 @@
-angular.module('application', []).controller('home', function ($scope) {
-   $scope.mensagem = {texto: 'O AngularJS está funcionando!'}
+angular.module('application', []).controller('home', function ($scope, $http) {
+
+    $http.get('/mensagem').success(function (data) {
+        $scope.mensagem = data;
+    })
+
 });

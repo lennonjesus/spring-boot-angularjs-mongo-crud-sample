@@ -12,9 +12,12 @@ import org.springframework.http.converter.HttpMessageConverter
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import org.springframework.test.context.web.WebAppConfiguration
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.MvcResult
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 
+import static org.junit.Assert.assertEquals
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
@@ -54,6 +57,18 @@ class MensagemRestControllerTest {
                 .contentType("application/json")
                 .content(new Gson().toJson(new Mensagem()))
         ).andExpect(status().isBadRequest())
+
+    }
+
+    @Test
+    public void deveRetornarUmaMensagemCorretamente() {
+        MvcResult result = mockMvc.perform(get("/mensagem"))
+            .andExpect(status().isOk())
+            .andReturn()
+
+        Mensagem mensagem = new Gson().fromJson(result.response.contentAsString, Mensagem)
+
+        assertEquals("O AngularJS está funcionando!", mensagem.texto)
 
     }
 

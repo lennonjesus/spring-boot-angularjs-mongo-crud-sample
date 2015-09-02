@@ -24,4 +24,13 @@ public class MensagemController {
         mensagemRepository.save(mensagem);
     }
 
+    @RequestMapping(value = "/mensagem", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody Mensagem recuperar() {
+        Mensagem mensagem = new Mensagem();
+        mensagem.setTexto("O AngularJS está funcionando!"); //FIXME hardcoded
+
+        return mensagem;
+    }
+
 }
