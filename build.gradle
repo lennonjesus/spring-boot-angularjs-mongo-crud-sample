@@ -1,7 +1,25 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+        classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+    }
+}
+
 apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
 apply plugin: 'groovy'
 
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
 
 group = 'com.lennonjesus'
 version = '0.0.1'
@@ -17,7 +35,8 @@ repositories {
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.2.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '1.2.5.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.2.5.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '1.2.5.RELEASE'
+
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.3.1'
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.3.1'
@@ -29,16 +48,7 @@ dependencies {
     testCompile group: 'com.jayway.jsonpath', name: 'json-path', version: '0.8.1'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.0'
 
-//    classpath "org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE"
-//    classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+
 }
 
 
-apply plugin: 'idea'
-
-idea {
-    module {
-        inheritOutputDirs = false
-        outputDir = file("$buildDir/classes/main/")
-    }
-}
