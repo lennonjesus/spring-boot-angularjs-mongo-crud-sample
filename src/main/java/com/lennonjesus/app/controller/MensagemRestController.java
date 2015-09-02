@@ -7,12 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by lennonjesus on 28/08/15.
  */
 @RestController
-public class MensagemController {
+public class MensagemRestController {
 
 
     @Autowired
@@ -24,13 +25,19 @@ public class MensagemController {
         mensagemRepository.save(mensagem);
     }
 
-    @RequestMapping(value = "/mensagem", method = RequestMethod.GET)
+    @RequestMapping(value = "/mensagem/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody Mensagem recuperar() {
+    public @ResponseBody Mensagem recuperar(@PathVariable("id") String id) {
         Mensagem mensagem = new Mensagem();
         mensagem.setTexto("O AngularJS está funcionando!"); //FIXME hardcoded
 
         return mensagem;
+    }
+
+    @RequestMapping(value = "/mensagem", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody List<Mensagem> listar() {
+        return mensagemRepository.findAll();
     }
 
 }

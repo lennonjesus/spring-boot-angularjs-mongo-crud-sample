@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MvcResult
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 
+import static junit.framework.TestCase.assertFalse
 import static org.junit.Assert.assertEquals
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -62,13 +63,27 @@ class MensagemRestControllerTest {
 
     @Test
     public void deveRetornarUmaMensagemCorretamente() {
-        MvcResult result = mockMvc.perform(get("/mensagem"))
+        MvcResult result = mockMvc.perform(get("/mensagem/1"))
             .andExpect(status().isOk())
             .andReturn()
 
         Mensagem mensagem = new Gson().fromJson(result.response.contentAsString, Mensagem)
 
         assertEquals("O AngularJS está funcionando!", mensagem.texto)
+
+    }
+
+    @Test
+    public void deveRetornarListaDeMensagens() {
+        MvcResult result = mockMvc.perform(get("/mensagem"))
+                .andExpect(status().isOk())
+                .andReturn()
+
+        List<Mensagem> mensagens = new Gson().fromJson(result.response.contentAsString, List)
+
+        assertFalse(mensagens.isEmpty())
+
+        // FIXME Melhorar esse teste
 
     }
 
