@@ -1,4 +1,7 @@
 language: java
 
+services:
+  - mongodb
+
 script:
   - ./gradlew test
